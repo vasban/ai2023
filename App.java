@@ -10,11 +10,6 @@ public class App {
 
         State s1 = new State();
         
-       
-
-        System.out.println(s1.getF());
-        System.out.println(s1.getG());
-        System.out.println(s1.getH());
         
         s1.rightside.add(kid1);
         s1.rightside.add(kid2);
@@ -22,27 +17,52 @@ public class App {
         s1.rightside.add(mom);
         s1.rightside.add(grandpa);
 
-        for(Person p : s1.rightside){
-            System.out.println(p.getName()+" time is :"+p.getTime());
-        }
+        
+    
 
-      
 
-      for (Person p : s1.leftside){
-        System.out.println(p.getName()+" time is :"+p.getTime());
-      }
-      s1.evaluate();
-       System.out.println(s1.getF());
-        System.out.println(s1.getG());
-        System.out.println(s1.getH());
+     System.out.println(s1);
 
-      System.out.println(s1.getChildren());
-      System.out.println(s1.getChildren());
-      System.out.println(s1.getChildren());
+     State s2 = new State(s1.getChildren().get(1));
+     State s3 = new State(s1.getChildren().get(2));
+     State s4 = new State(s1.getChildren().get(5));
 
-      State s2 = new State(s1);
-      for(Person p : s2.leftside)
-        System.out.println(p.getName());
-        //tsekare ta paidia State;
+     System.out.println(s2);
+     System.out.println(s3);
+     System.out.println(s4);
+    //   System.out.println(s1.getChildren());
+    //   System.out.println(s1.getChildren());
+    //   System.out.println(s1.getChildren());
+
+    //   State s2 = new State(s1.getChildren().get(1));
+
+    //   System.out.println(s2.rightside);
+    //   System.out.println(s2.leftside);
+
+    //   for(int i =0; i<s2.rightside.size();i++){
+    //     System.out.println(s2.rightside.get(i).getName()+ " State 2 rightside");
+    //   }
+    //   for(int i =0; i<s2.leftside.size();i++){
+    //     System.out.println(s2.leftside.get(i).getName()+" State 2 left side");
+    //   }
+
+    //   State s3 = new State(s2.getChildren().get(1));
+
+    //   for(int i =0; i<s3.rightside.size();i++){
+    //     System.out.println(s3.rightside.get(i).getName()+" State 3 rightside");
+    //   }
+    //   for(int i =0; i<s3.leftside.size();i++){
+    //     System.out.println(s3.leftside.get(i).getName()+" Sate 3 leftside");
+    //   }
+
+    //   State s4 = new State(s3.getChildren().get(1));
+
+    //   for(int i =0; i<s4.rightside.size();i++){
+    //     System.out.println(s4.rightside.get(i).getName()+" State 4 rightside");
+    //   }
+    //   for(int i =0; i<s4.leftside.size();i++){
+    //     System.out.println(s4.leftside.get(i).getName()+" Sate 4 leftside");
+    //   }
+        
     }
 }

@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class State implements Comparable<State>{
     int totalTime;
@@ -81,16 +83,10 @@ public class State implements Comparable<State>{
 
     public void evaluate(){
         setG(getTotalTime());
-        Person slowest = new Person();
+        Person fastest = new Person();
         
-        for(int i=0;i<rightside.size()-1;i++){
-            if(rightside.get(i).compareTo(rightside.get(i+1))>0){
-                slowest=rightside.get(i);
-            }else{
-                slowest=rightside.get(i+1);
-            }
-        }
-        setH(slowest.getTime());
+        fastest = Collections.min(rightside);
+        setH(fastest.getTime());
 
         setF(getG()+getH());
     }
@@ -100,7 +96,7 @@ public class State implements Comparable<State>{
        leftside.add(p2);
        rightside.remove(p1);
        rightside.remove(p2);
-       setTotalTime(p1.getTime()>p2.getTime()?p1.getTime()+getTotalTime():p2.getTime()+getTotalTime());
+       setTotalTime(p1.compareTo(p2)>0?p1.getTime()+getTotalTime():p2.getTime()+getTotalTime());
         //p1.getTime()+p2.getTime()+this.getTotalTime()
        torchRight = false;
     }
@@ -119,15 +115,15 @@ public class State implements Comparable<State>{
         
         if(torchRight){
             for(int i =0;i<rightside.size();i++){
-                for(int j = i; j<rightside.size();j++){
-                    if(i!=j){
+                for(int j = i+1; j<rightside.size();j++){
+                   
                         State child = new State(this);
                         
                         child.moveFromRight(rightside.get(i), rightside.get(j));
                         child.evaluate();
                         child.setFather(this);
                         children.add(child);
-                    }
+                    
 
                 }
             }
@@ -147,7 +143,25 @@ public class State implements Comparable<State>{
     public int compareTo(State s){
         return Double.compare(this.getF(), s.getF());
     }
-   
+   @Override
+    public String toString(){
+        String s="Rightside:\n";
+        for(int i =0; i<this.rightside.size();i++){
+            Person current = rightside.get(i);
+            s+=current.getName()+"\t"+current.getTime()+"\n";
+          }
+          s+="Leftside:\n";
+          for(int i =0; i<this.leftside.size();i++){
+            Person current = leftside.get(i);
+            s+=current.getName()+ "\t"+current.getTime()+"\n";
+          }
+          s+="Total time :"+getTotalTime()+"\n";
+          s+="F(n) :"+getF()+"\t";
+          s+="G(n) :"+getG()+"\t";
+          s+="H(n) :"+getH()+"\t";
+
+        return s;  
+    }
    
 
 

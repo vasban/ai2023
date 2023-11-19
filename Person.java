@@ -1,7 +1,7 @@
 public class Person implements Comparable<Person>{
     String name;
     
-    int time;
+    private int time;
     
     public Person(String name,int time){
         this.name = name;
